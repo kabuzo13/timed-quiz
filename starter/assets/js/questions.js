@@ -30,11 +30,3 @@ choicesEl.appendChild(button2);
 choicesEl.appendChild(button3);
 choicesEl.appendChild(button4);
 
-
-
-var score = 0;
-
-
-// choice clicked, if choice = answer, moves onto next question and timer keeps counting down
-// choice clicked, if choice =/= answer, moves onto next question and 10 seconds is subtracted from the time
-// do not advance to next question without an answer clicked
