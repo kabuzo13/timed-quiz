@@ -24,6 +24,7 @@ var button4 = document.createElement("button");
 var startEl = document.getElementById('start-screen');
 var quizEl = document.getElementById('questions');
 var choicesEl = document.getElementById('choices');
+var qTitle = document.getElementById('question-title');
 
 choicesEl.appendChild(button1);
 choicesEl.appendChild(button2);

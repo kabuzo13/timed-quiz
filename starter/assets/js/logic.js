@@ -8,11 +8,10 @@ start.addEventListener("click", function (){
 
 function startQuiz() {
     countdown()
-    console.log("Hello world");
     startEl.classList.add('hide');
     quizEl.classList.remove('hide');
+    displayQuestions();
     displayChoices();
-    // make a function to create the buttons and append to choices div
 };
 
 
@@ -23,8 +22,6 @@ var score = document.getElementById('final-score');
 
 var timeLeft = 60;
 var timeInterval;
-
-// timer starts when quiz starts
 
 function countdown() {
 
@@ -43,14 +40,16 @@ function endScreen() {
     quizEl.classList.add('hide');
     endEl.classList.remove('hide');
     score = timeLeft;
+    console.log(score);
 }
 
 function checkAnswer(event) {
     if (event.target.textContent !== questions[questionIndex].answer) {
-        timeLeft -=5;
+        timeLeft -=10;
     };
     if (questionIndex < questions.length - 1) {
         questionIndex++;
+        displayQuestions();
         displayChoices();
     } else {
         clearInterval(timeInterval);
@@ -64,6 +63,10 @@ function displayChoices() {
     button3.textContent = questions[questionIndex].choices[2];
     button4.textContent = questions[questionIndex].choices[3];
 };
+
+function displayQuestions() {
+    qTitle.textContent = questions[questionIndex].title;
+}
 
 choicesEl.addEventListener('click', function(event) {
     console.log(event.target);
