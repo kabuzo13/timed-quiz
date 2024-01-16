@@ -39,7 +39,11 @@ function countdown() {
 function endScreen() {
     quizEl.classList.add('hide');
     endEl.classList.remove('hide');
-    score = timeLeft;
+    displayScore();
+}
+
+function displayScore() {
+    score.textContent = timeLeft;
     console.log(score);
 }
 
