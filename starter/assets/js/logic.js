@@ -1,11 +1,3 @@
-var start = document.getElementById('start');
-var questionIndex = 0;
-start.addEventListener("click", function (){
-    startQuiz();
-}) 
-// move to bottom
-// call functions and event listeners last
-
 function startQuiz() {
     countdown()
     startEl.classList.add('hide');
@@ -19,6 +11,8 @@ function startQuiz() {
 var timerEl = document.getElementById('time');
 var endEl = document.getElementById('end-screen');
 var score = document.getElementById('final-score');
+var initialInput = document.getElementsByTagName('input [type="text"]');
+var initials = initialInput.textContent;
 
 var timeLeft = 60;
 var timeInterval;
@@ -34,18 +28,20 @@ function countdown() {
             endScreen();
         }
     }, 1000);
-}
+};
 
 function endScreen() {
     quizEl.classList.add('hide');
     endEl.classList.remove('hide');
     displayScore();
-}
+    localStorage.setItem('high-score', timeLeft);
+    localStorage.setItem('initials', initials);
+};
 
 function displayScore() {
     score.textContent = timeLeft;
-    console.log(score);
-}
+    // console.log(score);
+};
 
 function checkAnswer(event) {
     if (event.target.textContent !== questions[questionIndex].answer) {
@@ -59,7 +55,7 @@ function checkAnswer(event) {
         clearInterval(timeInterval);
         endScreen();
     }
-}
+};
 
 function displayChoices() {
     button1.textContent = questions[questionIndex].choices[0];
@@ -70,12 +66,28 @@ function displayChoices() {
 
 function displayQuestions() {
     qTitle.textContent = questions[questionIndex].title;
-}
+};
 
 choicesEl.addEventListener('click', function(event) {
-    console.log(event.target);
+    // console.log(event.target);
     if(event.target.tagName === "BUTTON") {
         checkAnswer(event);
     }
-})
+});
 
+function saveHighScore() {
+    localStorage.setItem('high-score', timeLeft);
+    var initials = initialInput.textContent;
+    localStorage.setItem('initials', initials);
+};
+
+var start = document.getElementById('start');
+var questionIndex = 0;
+start.addEventListener("click", function (){
+    startQuiz();
+}) ;
+
+var submit = document.getElementById('submit');
+submit.addEventListener('submit', function(){
+    saveHighScore();
+});
