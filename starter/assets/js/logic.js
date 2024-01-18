@@ -11,8 +11,8 @@ function startQuiz() {
 var timerEl = document.getElementById('time');
 var endEl = document.getElementById('end-screen');
 var score = document.getElementById('final-score');
-var initialInput = document.getElementsByTagName('input [type="text"]');
-var initials = initialInput.textContent;
+var initials = document.getElementById('initials').value;
+console.log(initials);
 
 var timeLeft = 60;
 var timeInterval;
@@ -77,7 +77,6 @@ choicesEl.addEventListener('click', function(event) {
 
 function saveHighScore() {
     localStorage.setItem('high-score', timeLeft);
-    var initials = initialInput.textContent;
     localStorage.setItem('initials', initials);
 };
 
@@ -88,6 +87,8 @@ start.addEventListener("click", function (){
 }) ;
 
 var submit = document.getElementById('submit');
-submit.addEventListener('submit', function(){
+submit.addEventListener("submit", function(event){
+    event.preventDefault();
+    var initials = document.getElementById('initials').value;
     saveHighScore();
 });
