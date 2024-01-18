@@ -5,6 +5,6 @@ var ol = document.createElement("ol");
 var li = document.createElement("li");
 
 var highScore = document.getElementById('highscores');
-highScore.appendChild(ol);
+highScore.appendChild(li);
 
-ol.textContent = savedScore + savedInitials;
+li.textContent = savedScore + " -" + savedInitials;
